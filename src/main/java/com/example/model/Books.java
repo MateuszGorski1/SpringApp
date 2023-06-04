@@ -1,12 +1,10 @@
-package com.example.SimpleApp.model;
+package com.example.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-//mark class as an Entity
 @Entity
-//defining class name as Table name
 @Table
 public class Books {
         @Id
