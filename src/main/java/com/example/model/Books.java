@@ -1,11 +1,8 @@
 package com.example.model;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
-@Table
+@Table(name="Books")
 public class Books {
         @Id
         @Column
