@@ -2,24 +2,29 @@ package com.example.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="Books")
+@Table(name="books")
 public class Books {
         @Id
-        @Column
-        private int bookid;
-        @Column
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name="book_id")
+        private int book_id;
+
+        @Column(name="bookname")
         private String bookname;
-        @Column
+
+        @Column(name="author")
         private String author;
-        @Column
+
+        @Column(name="price")
         private int price;
+
         public int getBookid()
         {
-            return bookid;
+            return book_id;
         }
         public void setBookid(int bookid)
         {
-            this.bookid = bookid;
+            this.book_id = bookid;
         }
         public String getBookname()
         {

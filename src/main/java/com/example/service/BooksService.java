@@ -9,19 +9,20 @@ import com.example.repository.BooksRepository;
 
 @Service
 public class BooksService {
+
     @Autowired
     BooksRepository booksRepository;
 
     public List<Books> getAllBooks()
     {
-        List<Books> books = new ArrayList<Books>();
-        booksRepository.findAll().forEach(books1 -> books.add(books1));
+        List<Books> books = new ArrayList<>();
+        booksRepository.findAll().forEach(book -> books.add(book));
         return books;
     }
 
-    public Books getBooksById(int id)
+    public Books getBookById(int id)
     {
-        return booksRepository.findById(id).get();
+        return booksRepository.findById(id).orElseThrow(() -> new BookNotFoundException(id));
     }
 
     public void saveOrUpdate(Books books)
@@ -31,11 +32,10 @@ public class BooksService {
 
     public void delete(int id)
     {
+        if(booksRepository.findById(id).isEmpty()){
+            throw new BookNotFoundException(id);
+        }
         booksRepository.deleteById(id);
     }
 
-    public void update(Books books, int bookid)
-    {
-        booksRepository.save(books);
-    }
 }
