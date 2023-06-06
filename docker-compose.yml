@@ -4,7 +4,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: app.dockerfile
     ports:
       - 8080:8000
     depends_on:
@@ -16,10 +16,8 @@ services:
     build:
       context: .
       dockerfile: db.dockerfile
-    image: postgres:14.7-bullseye
-    environment:
-      - PGDATA=/var/lib/postgresql/data/pgdata
-      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - app-db-data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 1s
@@ -27,4 +25,6 @@ services:
       retries: 5
     restart: always
 
+volumes:
+  app-db-data:
 
