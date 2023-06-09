@@ -1,7 +1,7 @@
 backend:
   image:
     repository: destinytm/springapp-backend
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
     tag: latest
   service:
     type: NodePort
