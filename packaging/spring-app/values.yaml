@@ -9,7 +9,7 @@ backend:
 db:
   image:
     repository: destinytm/springapp-db
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
     tag: latest
   service:
     type: ClusterIP

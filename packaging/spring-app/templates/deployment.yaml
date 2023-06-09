@@ -12,6 +12,10 @@ spec:
       labels:
         app: backend
     spec:
+      initContainers:
+      - name: wait-for-master-before-starup
+        image: busybox
+        command:  ["sh", "-c", "until nc -z postgres 5432 > /dev/null; do echo Waiting for database.; sleep 2; done;"]
       containers:
         - name: backend-service
           image: "{{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}"
