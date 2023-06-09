@@ -4,9 +4,10 @@ services:
   app:
     build:
       context: .
-      dockerfile: app.dockerfile
+      dockerfile: ./packaging/app.dockerfile
     ports:
-      - 8080:8000
+      - 8080:8080
+    image: destinytm/springapp-backend
     depends_on:
       db:
         condition: service_healthy
@@ -14,8 +15,9 @@ services:
 
   db:
     build:
-      context: .
+      context: ./packaging
       dockerfile: db.dockerfile
+    image: destinytm/springapp-db
     volumes:
       - app-db-data:/var/lib/postgresql/data
     healthcheck:
