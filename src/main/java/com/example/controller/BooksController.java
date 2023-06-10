@@ -8,12 +8,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin
 public class BooksController {
 
     @Autowired
     BooksService booksService;
 
-    @GetMapping("/book")
+    @GetMapping("/books")
     private List<Books> getAllBooks()
     {
         return booksService.getAllBooks();

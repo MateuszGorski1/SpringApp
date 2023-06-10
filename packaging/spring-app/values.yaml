@@ -14,3 +14,11 @@ db:
   service:
     type: ClusterIP
     port: 5432
+frontend:
+  image:
+    repository: destinytm/springapp-frontend
+    pullPolicy: Always
+    tag: latest
+  service:
+    type: NodePort
+    port: 3000

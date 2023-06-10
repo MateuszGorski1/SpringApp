@@ -13,7 +13,7 @@ spec:
         app: backend
     spec:
       initContainers:
-      - name: wait-for-master-before-starup
+      - name: wait-for-database-before-startup
         image: busybox
         command:  ["sh", "-c", "until nc -z postgres 5432 > /dev/null; do echo Waiting for database.; sleep 2; done;"]
       containers:
@@ -24,6 +24,18 @@ spec:
             - name: http
               containerPort: {{ .Values.backend.service.port }}
               protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 3
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 3
           env:
             - name: DB_NAME
               value: db
