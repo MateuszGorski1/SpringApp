@@ -22,3 +22,6 @@ frontend:
   service:
     type: NodePort
     port: 3000
+
+ingress:
+  host: localhost

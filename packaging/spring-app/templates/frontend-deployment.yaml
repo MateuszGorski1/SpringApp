@@ -22,6 +22,4 @@ spec:
               protocol: TCP
           env:
             - name: REACT_APP_HOST
-              value: backend-service
-            - name: REACT_APP_PORT
-              value: 8080
+              value: {{ .Values.ingress.host }}
