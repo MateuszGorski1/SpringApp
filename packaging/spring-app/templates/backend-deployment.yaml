@@ -26,16 +26,16 @@ spec:
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /actuator/health
+              path: /actuator/health/liveness
               port: 8080
-            initialDelaySeconds: 5
-            periodSeconds: 3
+            initialDelaySeconds: 15
+            periodSeconds: 30
           readinessProbe:
             httpGet:
-              path: /actuator/health
+              path: /actuator/health/readiness
               port: 8080
-            initialDelaySeconds: 5
-            periodSeconds: 3
+            initialDelaySeconds: 15
+            periodSeconds: 30
           env:
             - name: DB_NAME
               value: db
