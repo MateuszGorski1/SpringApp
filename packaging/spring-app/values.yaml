@@ -24,4 +24,4 @@ frontend:
     port: 3000
 
 ingress:
-  host: localhost
+  host: test.spring
