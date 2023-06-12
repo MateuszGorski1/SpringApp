@@ -18,6 +18,7 @@ spec:
           imagePullPolicy: {{ .Values.frontend.image.pullPolicy }}
           ports:
             - name: http
+              containerPort: 80
               protocol: TCP
           env:
             - name: REACT_APP_HOST
