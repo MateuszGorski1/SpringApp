@@ -1,0 +1,29 @@
+pipeline {
+   agent any
+   environment {
+       DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+     }
+     stages {
+       stage('Build') {
+         steps {
+           sh 'docker-compose -f ../docker-compose.yml build '
+         }
+       }
+       stage('Login') {
+         steps {
+           sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+         }
+       }
+       stage('Push') {
+         steps {
+           sh 'docker push destinytm/springapp-db'
+           sh 'docker push destinytm/springapp-backend'
+         }
+       }
+     }
+     post {
+       always {
+         sh 'docker logout'
+       }
+     }
+}
