@@ -18,14 +18,7 @@ spec:
           imagePullPolicy: {{ .Values.frontend.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: 80
               protocol: TCP
           env:
             - name: REACT_APP_HOST
               value: {{ .Values.ingress.host }}
-          command:
-            - sh
-            - -c
-          args:
-            - sed -i "s/__host__/$REACT_APP_HOST/g" /usr/share/nginx/html/env.js;
-              nginx -g 'daemon off;'
